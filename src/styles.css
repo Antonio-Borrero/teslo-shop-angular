@@ -4,3 +4,15 @@
 @plugin "daisyui" {
   themes: night --default;
 }
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat_Alternates/MontserratAlternates-Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-montserrat: 'Montserrat', sans-serif;
+}
