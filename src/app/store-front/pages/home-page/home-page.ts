@@ -1,10 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductsService } from '@products/services/products.service';
-import { Component, inject } from '@angular/core';
-import { rxResource } from '@angular/core/rxjs-interop';
-import { ProductsService } from '@products/services/products.service';
-import { ProductCard } from '@store-front/components/product-card/product-card';
+import { ProductCard } from '@products/components/product-card/product-card';
 
 @Component({
   selector: 'app-home-page',
