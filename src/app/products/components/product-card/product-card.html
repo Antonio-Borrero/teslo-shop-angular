@@ -1,13 +1,16 @@
-<div class="card bg-base-100 shadow-sm animate-fadeIn">
+<div class="card bg-base-100 shadow-sm animate-fadeIn h-120">
   <figure>
     <img [src]="product().images | ProductImage" [alt]="product().title" />
   </figure>
   <div class="card-body">
     <div class="flex justify-between">
-      <h2 class="card-title font-bold font-montserrat text-accent text-xl">
+      <h2
+        class="card-title font-bold font-montserrat text-accent text-xl hover:underline cursor-pointer"
+        [routerLink]="['/product', product().slug]"
+      >
         {{ product().title }}
       </h2>
-      <span class="text-lg">${{ product().price }}/mo</span>
+      <span class="text-lg">${{ product().price }}</span>
     </div>
     <p>{{ product().description | slice: 0 : 70 }}...</p>
     <div class="card-actions justify-end">
