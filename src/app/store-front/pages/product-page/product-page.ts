@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '@products/services/products.service';
 import { ProductCarousel } from '@products/components/product-carousel/product-carousel';
 
@@ -10,13 +9,11 @@ import { ProductCarousel } from '@products/components/product-carousel/product-c
   templateUrl: './product-page.html',
 })
 export class ProductPage {
-  activatedRoute = inject(ActivatedRoute);
+  idSlug = input.required<string>();
   productService = inject(ProductsService);
 
-  productIdSlug = this.activatedRoute.snapshot.params['idSlug'];
-
   productResource = rxResource({
-    params: () => ({ idSlug: this.productIdSlug }),
+    params: () => ({ idSlug: this.idSlug() }),
     stream: ({ params }) => {
       return this.productService.getProductByIdSlug(params.idSlug);
     },

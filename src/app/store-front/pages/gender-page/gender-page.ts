@@ -1,9 +1,13 @@
-import { Component, inject } from '@angular/core';
-import { rxResource, toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
+import { Component, computed, inject, input } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { ProductsService } from '@products/services/products.service';
-import { map } from 'rxjs';
 import { ProductCard } from '@products/components/product-card/product-card';
+
+const genders: Record<string, string> = {
+  men: 'Hombres',
+  women: 'Mujeres',
+  kid: 'Niños',
+};
 
 @Component({
   selector: 'app-gender-page',
@@ -11,8 +15,10 @@ import { ProductCard } from '@products/components/product-card/product-card';
   templateUrl: './gender-page.html',
 })
 export class GenderPage {
-  route = inject(ActivatedRoute);
-  gender = toSignal(this.route.params.pipe(map(({ gender }) => gender)));
+  gender = input.required<string>();
+  genderTitle = computed(() => {
+    return genders[this.gender()] ?? 'Todos';
+  });
   productService = inject(ProductsService);
 
   productsResource = rxResource({
